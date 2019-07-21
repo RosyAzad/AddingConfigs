@@ -26,7 +26,8 @@ class Compose extends Component {
     }
 
     handleServiceNameChange(event) {
-        this.setState({serviceName: event.target.value})
+        this.state.serviceName = event.target.value
+        this.setState({serviceName: this.state.serviceName})
         console.log("servie name: " + this.state.serviceName)
       }
 
