@@ -9,7 +9,16 @@ class Service extends Component{
             listDataFromChild: null
         }
         this.handleAddService = this.handleAddService.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.myCallback = this.myCallback.bind(this)
+    }
+
+    handleSubmit(){
+        //converting state to json array
+        var finalServiceState = []
+        finalServiceState = this.state.services
+        console.log("final service state: "+ finalServiceState[0].serviceName);
+
     }
 
     handleAddService(){
@@ -18,7 +27,18 @@ class Service extends Component{
 
     myCallback(dataFromChild, index){
         this.setState({ listDataFromChild: dataFromChild });
+        //this.setFinalState()
         console.log("child to parent data" + this.state.listDataFromChild);
+        
+        if(this.state.services[index] == "")
+        {
+            this.state.services[index] ={}
+        }
+        this.state.services[index] = dataFromChild
+        this.setState({services: this.state.services})
+        // if(this.state.services[index] != null && this.state.services[index].serviceName != ""){
+        //     console.log("service name in parent:" + this.state.services[index].serviceName)
+        // }
     }
 
     render(){
@@ -31,6 +51,7 @@ class Service extends Component{
                 })}
                 
                 <button onClick={this.handleAddService}>Add Service</button>
+                <button onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }

@@ -18,7 +18,6 @@ class Compose extends Component {
         }
         this.handleServiceNameChange = this.handleServiceNameChange.bind(this)
         this.handleNetworkClick = this.handleNetworkClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
     styles = {
         fontSize: 20,
@@ -29,6 +28,7 @@ class Compose extends Component {
         this.state.serviceName = event.target.value
         this.setState({serviceName: this.state.serviceName})
         console.log("servie name: " + this.state.serviceName)
+        this.props.callbackFromParent(this.state, this.state.id)
       }
 
     handleNetworkClick() {
@@ -65,9 +65,9 @@ class Compose extends Component {
         this.setState({configs: this.state.configs})
         //this.state.service.configs = this.state.configs[index]
         //this.state.service.configs[index] ={}
-        this.state.service.configs = this.state.configs
-        this.setState({service: this.state.service.configs})
-        this.props.callbackFromParent(this.state.service, this.state.id)
+        //this.state.service.configs = this.state.configs
+        //this.setState({service: this.state.service.configs})
+        this.props.callbackFromParent(this.state, this.state.id)
     }
     handleConfigTargetInput(e, index){
         if( this.state.configs[index] == ""){
@@ -75,6 +75,7 @@ class Compose extends Component {
         }
         this.state.configs[index].target = e.target.value
         this.setState({configs: this.state.configs})
+        this.props.callbackFromParent(this.state, this.state.id)
     }
     handleConfigVersionInput(e, index){
         if( this.state.configs[index] == ""){
@@ -97,14 +98,14 @@ class Compose extends Component {
 
         this.setState({configs: this.state.configs})
     }
-    handleSubmit(){
-        var services = []
-        //console.log(this.state.networksOne,"mera network")
-        //console.log(this.state.configs, "mera config")
+    // handleSubmit(){
+    //     var services = []
+    //     //console.log(this.state.networksOne,"mera network")
+    //     //console.log(this.state.configs, "mera config")
 
-        services.push(this.state.configs)
-        console.log(services)
-    }
+    //     services.push(this.state.configs)
+    //     console.log(services)
+    // }
 
     render() { 
        return (
@@ -183,7 +184,6 @@ class Compose extends Component {
             }
             </div>
             </label>
-            <button onClick= { this.handleSubmit }> Submit </button>
         </div>
         );
     }
