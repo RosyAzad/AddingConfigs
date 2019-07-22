@@ -110,10 +110,7 @@ class Compose extends Component {
     render() { 
        return (
         <div key ={this.props.id} >
-           <label> <br></br>
-            <span style = {this.styles} className = "badge badge-primary m-2">Collection(Team) name :</span>
-            <input type="text" name="name" />
-            </label>
+           
             <h1>Services</h1>
             
 
