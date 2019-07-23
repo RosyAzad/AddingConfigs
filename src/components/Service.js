@@ -20,9 +20,11 @@ class Service extends Component {
 
     handleSubmit() {
         //converting state to json array
-        var finalServiceState = []
-        finalServiceState = this.state.services
-        console.log("final service state: " + finalServiceState[0].serviceName);
+        var finalServiceState = {}       
+        finalServiceState.services = this.state.services
+        finalServiceState.collectionName = this.name.collectionName
+        //finalServiceState = this.state.services
+        console.log("final service state: " + finalServiceState.services[0].serviceName);
 
     }
 

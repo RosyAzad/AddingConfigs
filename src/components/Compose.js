@@ -44,6 +44,7 @@ class Compose extends Component {
     handleNetworkOneInput(e, index){
         this.state.networksOne[index] = e.target.value
         this.setState({networksOne: this.state.networksOne})
+        this.props.callbackFromParent(this.state, this.state.id)
     }
 
     handleRemoveNetworkOne(index){
