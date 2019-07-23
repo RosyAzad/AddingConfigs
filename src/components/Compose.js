@@ -108,6 +108,14 @@ class Compose extends Component {
     //     console.log(services)
     // }
 
+    //validations for numeric fields. The user can't enter e,-,+,. 
+    handleNumberInput(event) {
+        if (event.key === 'e' || event.key === '-' || event.key === '+' || event.key === '.') {
+            event.returnValue = false;
+            if (event.preventDefault) event.preventDefault();
+        }
+    }
+
     render() { 
        return (
         <div key ={this.props.id} >
@@ -133,7 +141,7 @@ class Compose extends Component {
             </div>
              <div>
             <span style = {this.styles} className = "badge badge-primary m-2">Number of Replicas :</span>
-            <input type="text" name="replica" />
+            <input type="number" min="0" name="replica" onKeyDown={this.handleNumberInput} />
             </div>
             <div >
             <span style = {this.styles} className = "badge badge-primary m-2">Network</span>
