@@ -19,10 +19,15 @@ class Service extends Component {
     }
 
     handleSubmit() {
+        this.state.services.forEach((service,index) => {
+            if(service.serviceName == ""){
+                alert(`Please provide service name for service at index ${index}`)
+            }
+        });
         //converting state to json array
         var finalServiceState = {}       
         finalServiceState.services = this.state.services
-        finalServiceState.collectionName = this.name.collectionName
+        //finalServiceState.collectionName = this.name.collectionName
         //finalServiceState = this.state.services
         console.log("final service state: " + finalServiceState.services[0].serviceName);
 
